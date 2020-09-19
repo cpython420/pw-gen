@@ -8,18 +8,31 @@ import csv
 
 window = Tk()
 window.title("Password generation")
+window.resizable(False, False)
 
+"""
+try-except error handling added
+"""
 
 def generatePassword(len):
-    chars = string.ascii_letters + string.digits + string.punctuation
-    password = ''.join(random.choice(chars) for i in range(len))
-    pwBox.delete(0, END)
-    pwBox.insert(0, password)
-    with open("list.txt", "a") as outfile: #zapise heslo do .txt subora, append, aby sa nezmazali predchadzajuce
-        outfile.write(password + "\n")     #kazde heslo do noveho radku
-    print(password)
+    try:
+        len = int(len)
+        chars = string.ascii_letters + string.digits + string.punctuation
+        password = ''.join(random.choice(chars) for i in range(len))
+        pwBox.delete(0, END)                   #vymaze obsah pwBox
+        pwBox.insert(0, password)              #vlozi vygenerovane heslo
+        with open("list.txt", "a") as outfile: #zapise heslo do .txt subora, append, aby sa nezmazali predchadzajuce
+            outfile.write(password + "\n")     #kazde heslo do noveho radku
+        print("Success: "+password)
+        
+    except ValueError:
+        print("Please, type in an integer.")
+            
     
-    
+"""
+tkinter widgets
+"""  
+
 pwBox = Entry(
     window, 
     width=30, 
@@ -34,15 +47,15 @@ pwLen = Entry(
 
 pwButton = Button(
     window, 
-    text="Generate password", 
-    width=30,
-    command=lambda: generatePassword(int(pwLen.get())))
+    text="Generate password",
+    command=lambda: generatePassword((pwLen.get())))
 
-
-
-
+"""
+render widgetov
+"""
 
 pwBox.grid(row=0, column=0) #tu sa zobrazi vygenerovane heslo
 pwLen.grid(row=0, column=1) #pocet znakov hesla
-pwButton.grid(row=1, column=0, columnspan=2) #vygeneruje heslo o danom pocte znakov po kliknuti
-window.mainloop()
+pwButton.grid(row=1, column=0, columnspan=5, sticky="nsew") #vygeneruje heslo o danom pocte znakov po kliknuti
+
+window.mainloop() 
