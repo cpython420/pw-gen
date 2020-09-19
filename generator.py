@@ -7,7 +7,7 @@ import random
 import csv
 
 window = Tk()
-window.title("Password generation")
+window.title("pw-gen")
 window.resizable(False, False)
 
 """
