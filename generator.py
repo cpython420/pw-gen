@@ -54,8 +54,8 @@ pwButton = Button(
 render widgetov
 """
 
-pwBox.grid(row=0, column=0) #tu sa zobrazi vygenerovane heslo
-pwLen.grid(row=0, column=1) #pocet znakov hesla
-pwButton.grid(row=1, column=0, columnspan=5, sticky="nsew") #vygeneruje heslo o danom pocte znakov po kliknuti
+pwBox.grid(row=0, column=0,sticky="nsew") #tu sa zobrazi vygenerovane heslo
+pwLen.grid(row=0, column=1, sticky="nsew") #pocet znakov hesla
+pwButton.grid(row=1, column=0, columnspan=3, sticky="nsew") #vygeneruje heslo o danom pocte znakov po kliknuti
 
 window.mainloop() 
